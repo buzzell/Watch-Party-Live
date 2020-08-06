@@ -1,0 +1,40 @@
+doctype html
+html(lang="en")
+    head
+        title= data.name + " Episodes"
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        meta(property="og:type" content="website")
+        meta(property="og:url" content="https://watchparty.live/tv/"+data.id+"/seasons")
+        meta(property="og:title" content=data.name + " Episodes")
+        meta(property="og:description" content="List of "+data.name + " episodes")
+        if !data.poster_path
+            meta(property="og:image" content="https://watchparty.live/img/social_share.png")
+        else
+            meta(property="og:image" content="https://image.tmdb.org/t/p/w500" + data.poster_path)
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.3/pure-min.css")
+        link(rel='stylesheet' href='https://watchparty.live/css/style.css')
+    body.episodes(data-id=data.id, data-num_of_seasons=data.number_of_seasons)
+        .titleBox
+            h1= data.name
+        div(class='seasonList')
+            each season in data.seasons
+                .season
+                    if !season.poster_path
+                        .poster.null
+                            img(src= "https://watchparty.live/img/placeholder.svg")
+                    else
+                        .poster
+                            img(src= "https://image.tmdb.org/t/p/w500" + season.poster_path)
+                    .info
+                        .title= season.name
+                        .date= season.air_date
+                        .overview= season.overview
+                    .pure-button-group.seasonBtnGrp(role="group", aria-label="...")
+                        a.button-small.pure-button.toggleEpisodes(href="#", data-seasonNum=season.season_number) View Episodes
+                        a.button-small.button-secondary.pure-button(href="/season/"+data.id+"-"+season.season_number) Join Public Chat
+                        a.button-small.button-success.pure-button(href="/season/"+data.id+"-"+season.season_number+"/private") Start Private Chat
+                    ul.episodeList
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js')
+        script(src='https://watchparty.live/js/episodes.js')

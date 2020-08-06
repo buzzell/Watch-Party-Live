@@ -1,0 +1,17 @@
+doctype html
+html(lang="en")
+    head
+        title= err.status+" "+err
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        meta(property="og:type" content="website")
+        meta(property="og:url" content="https://watchparty.live/")
+        meta(property="og:title" content="Watch Party Live")
+        meta(property="og:description" content="Binge watch with strangers")
+        meta(property="og:image" content="https://watchparty.live/img/social_share.png")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.3/pure-min.css")
+        link(rel='stylesheet' href='https://watchparty.live/css/style.css')
+    body.error
+        div=err.status+" "+err
+        a(href="https://watchparty.live") 
+        img(src="https://watchparty.live/img/logo.svg")

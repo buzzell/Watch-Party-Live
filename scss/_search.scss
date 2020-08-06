@@ -1,0 +1,200 @@
+body.search{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: #efefef;
+
+    &.results{
+
+        .header {
+            min-height: initial;
+            height: 0%;
+        }
+
+        .searchBox .searchInput input {
+            max-width: 1020px;
+        }
+    }
+
+    .header {
+        height: 50%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: height 250ms linear;
+
+        img {
+            display: block;
+            width: auto;
+            height: 100%;
+            max-width: 160px;
+        }
+    }
+
+    .searchBox {
+        flex:1;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        
+        .searchInput {
+            position: fixed;
+            width: 100%;
+            background-color: #efefef;
+            z-index: 100;
+
+            input {
+                display: block;
+                width: 98%;
+                margin: 0 auto;
+                padding: 15px 5px;
+                font-size: 20px;
+                font-family: monospace;
+                border: 0;
+                border-bottom: 2px solid #ddd;
+                outline: none;
+                max-width: 360px;
+                box-sizing: border-box;
+                background-color: transparent;
+                transition: all 250ms linear;
+            }
+        }
+
+        .mediaList {
+            flex:1;
+            width: 97%;
+            margin: 0 auto;
+            max-width: 1010px;
+            padding-top: 55px;
+            
+            &.error {
+                display: flex;
+                align-items: center;
+                justify-content: center; 
+
+                .errormsg {
+                    font-size: 16px;
+                    font-weight: bold;
+                    font-family: monospace;
+                    color: #444;
+                }
+            }
+
+            .media {
+                background-color: #fff;
+                text-decoration: none;
+                display: flex;
+                border-radius: 3px;
+                overflow: hidden;
+                margin: 5px 0;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                border: 1px solid #ddd;
+                flex-wrap: wrap;
+    
+                .poster {
+                    min-width: 100px;
+                    width: 100px;
+                    background-color: #dbdbdb;
+                    flex:1;
+                
+                    img {
+                        display: block;
+                        width: 100%;
+                    }
+                
+                    &.null img {
+                        padding: 48px 18px;
+                        width: 55px;
+                        margin: 0 auto;
+                    }
+                }
+            
+                .info {
+                    flex: 7;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    position: relative;
+                    padding: 0 24px 0 5px;
+            
+                    .title {
+                        font-family: monospace;
+                        font-size: 18px;
+                        font-weight: bold;
+                        max-height: 40px;
+                        overflow: hidden;
+                        margin-bottom: 2px;
+                        color:#333;
+                    }
+            
+                    .date {
+                        font-family: monospace;
+                        font-size: 12px;
+                        color: #888;
+                    }
+            
+                    .overview {
+                        font-family: arial;
+                        font-size: 12px;
+                        margin-top: 6px;
+                        color:#333;
+                        overflow: hidden;
+                        position: relative;
+                        line-height: 1.2em;
+                        max-height: 2.4em;
+                        text-align: justify;
+                        margin-right: -1em;
+                        padding-right: 1em;
+            
+                        &:before{
+                            content: '...';
+                            position: absolute;
+                            right: 1px;
+                            bottom: 0px;
+                        }
+                
+                        &:after{
+                            content: '';
+                            position: absolute;
+                            right: 0;
+                            width: 1em;
+                            height: 1em;
+                            margin-top: 0.2em;
+                            background: white;
+                        }
+                    }
+                }
+                
+                .mediaBtnGrp {
+                    width: 100%;
+
+                    &.tv a{
+                        width: 33.333%; 
+                    }
+
+                    &.movie a{
+                        width: 50%;
+                    }
+                }
+                
+                .button-small {
+                    font-size: 75%;
+                }
+                
+                .button-success,.button-secondary {
+                    color: white;
+                    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+                }
+                
+                .button-success {
+                    background: rgb(28, 184, 65);
+                }
+                
+                .button-secondary {
+                    background: rgb(66, 184, 221);
+                }
+            }
+        }
+    }
+}

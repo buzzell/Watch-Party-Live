@@ -1,0 +1,393 @@
+body.chat {
+    
+    .overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 50px;
+        z-index: 1000;
+
+        .username {
+            width: 90%;
+            max-width: 500px;
+            border-bottom: 1px solid #444;
+            display: flex;
+            position: relative;
+
+            &.error {
+                border-color: orangered;
+
+                .errormsg {
+                    display: block;
+                    position: absolute;
+                    left: 5px;
+                    bottom: -22px;
+                    font-size: 12px;
+                    font-family: monospace;
+                    color: orangered;
+                }
+            }
+
+            input {
+                width: 100%;
+                font-size: 18px;
+                font-family: monospace;
+                padding: 10px 3px;
+                background-color: transparent;
+                border: 0;
+                color: #ccc;
+                outline: none;
+                box-sizing: border-box;
+            }
+  
+            button {
+                font-family: monospace;
+                font-size: 15px;
+                cursor: pointer;
+                border-radius: 0;
+                border: 0;
+                background-color: transparent;
+                font-size: 27px;
+                font-weight: bold;
+                color: #aaa;
+                outline: none;
+                padding: 0 13px;
+                width: 40px;
+  
+                &:hover {
+                    background-color: #444;
+                }
+            }
+
+            .errormsg {
+                display: none;
+            }
+        }
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        background-color: #333;
+        position: relative;
+      
+        header {
+            display: flex;
+            border-bottom: 1px solid #444;
+            align-items: center;
+    
+            .titleBox {
+                flex:1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 10px 0;
+
+                .title {
+                    font-family: monospace;
+                    font-size: 16px;
+                    font-weight: bold;
+                    padding: 0;
+                    color: #ccc;
+                    box-sizing: border-box;
+                }
+
+                .titleInfo {
+                    font-size: 12px;
+                    color: #aaa;
+                    font-family: arial;
+                    margin-top: 2px;
+                }
+            }
+
+            .infoBtn, .videocallBtn {
+                background-image: url('https://watchparty.live/img/info.svg');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 24px;
+                width: 32px;
+                height: 32px;
+                padding: 5px;
+                margin: 5px;
+                border-radius: 3px;
+                cursor: pointer;
+
+                &.close {
+                    background-image: url('https://watchparty.live/img/close.svg');
+                }
+
+                &:hover {
+                    background-color: #444;
+                }
+            }
+
+            .videocallBtn {
+                background-image: url('https://watchparty.live/img/video.svg');
+            }
+        }
+    
+        .chatBody{
+            flex: 13;
+            position: relative;
+            overflow: hidden;
+
+            .chatList {
+                width: 100%;
+                height: 100%;
+                overflow-y: auto;
+                transition: width 150ms linear;
+
+                .messageList {
+                    width: 100%;
+                    min-height: 100%;
+                    padding: 10px 10px 5px 10px;
+                    box-sizing: border-box;
+                    max-width: 500px;
+                    margin: 0 auto;
+                    display: flex;
+                    flex-direction: column;
+
+                    .message {
+                        border-radius: 3px;
+                        max-width: 100%;
+                        box-sizing: border-box;
+                        align-self: flex-start;
+                        margin: 5px 0;
+
+                        &:first-child {
+                            margin-top: auto;
+                        }
+
+                        &.me {
+                            align-self: flex-end;
+                            text-align: right;
+
+                            .name {
+                                text-align: right;
+                            }
+                        }
+
+                        .name {
+                            display: block;
+                            font-size: 12px;
+                            font-weight: bold;
+                            line-height: 17px;
+                            color: #9999;
+                            letter-spacing: .5px;
+                            font-family: arial;
+                            padding: 0px 3px 3px 3px;
+                            
+                            a.pure-button {
+                                font-size: 85%;
+                                background-image: url('https://watchparty.live/img/video_dark.svg');
+                                background-repeat: no-repeat;
+                                background-position: 4px 3px;
+                                background-size: 20%;
+                                color: #000;
+                                padding: 5px 7px 5px 28px;
+                            }
+                        }
+
+                        .messageContent {
+                            color: #ccc;
+                            font-family: arial;
+                            letter-spacing: .8px;
+                            padding: 5px 7px;
+                            font-size: 16px;
+                            overflow-wrap: anywhere;
+                            background-color: #444;
+                            border-radius: 6px;
+                            display: inline-block;
+                            max-width: 100%;
+                        } 
+                    }
+                }
+            }
+
+            .mediaInfo{
+                width: 40%;
+                height: 100%;
+                max-width: 420px;
+                border-left: 1px solid #444;
+                color: #ccc;
+                display: flex;
+                flex-direction: column;
+                overflow-y: auto;
+                position: absolute;
+                right: -100%;
+                top: 0;
+                background-color: #333;
+                transition: right 0.2 linear;
+                -moz-transition: right 150ms linear;
+                -webkit-transition: right 150ms linear;
+           
+                .poster {
+                    padding: 3% 6% 0 6%;
+                    
+                    img {
+                        display: block;
+                        width: 100%;
+                        border-radius: 3px;
+                    }
+
+                    &.null img {
+                        padding: 10px 35%;
+                        box-sizing: border-box;
+                        background-color: #dbdbdb;
+                    }
+                }
+
+                .name {
+                    font-size: 18px;
+                    font-family: arial;
+                    padding: 0 6%;
+                    margin-top: 10px;
+                }
+
+                .releaseInfo {
+                    display: flex;
+                    font-size: 16px;
+                    font-family: arial;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0 6%;
+                    margin: 15px 0;
+                    
+                    .rating{
+                        border: 1px solid #ccc;
+                        padding: 4px 5px;
+                        font-size: 12px;
+                        line-height: 12px;
+                        border-radius: 4px;
+                    }
+
+                    .date {
+                        letter-spacing: 1px;
+                    }
+                }
+    
+                .overview {
+                    font-family: arial;
+                    font-size: 13px;
+                    letter-spacing: 1px;
+                    line-height: 20px;
+                    padding: 0 6%;
+                    text-align: justify; 
+                }
+
+                .tmdbLink {
+                    align-self: flex-end;
+                    margin-top: auto;
+                    padding: 10px 10px;
+                    font-family: monospace;
+                    font-size: 12px;
+                    font-weight: bold;
+                    text-decoration: none;
+                    color: #90cea1;
+                    
+                    img {
+                        width: 75px;
+                    }
+                }
+            }
+
+            &.showin {
+
+                .chatList {
+                    width: calc(100% - 420px);
+                }
+
+                .mediaInfo {
+                    right: 0;
+                }
+            }
+        }
+    
+        .messageInput {
+            border-top: 1px solid #444;
+            height: 90px !important;
+            display: flex;
+            position: relative;
+
+            .nickname {
+                position: absolute;
+                left: 0px;
+                top: -1px;
+                color: #888;
+                font-family: monospace;
+                padding: 4px 3px;
+                background-color: #444;
+                border-bottom-right-radius: 3px;
+            }
+
+            textarea {
+                flex: 11;
+                background-color: transparent;
+                border: 0;
+                outline: none;
+                resize: none;
+                color: #ccc;
+                font-family: arial;
+                font-size: 16px;
+                letter-spacing: .3px;
+                line-height: 18px;
+                padding: 30px 5px 5px 5px;
+            }
+    
+            button {
+                font-family: monospace;
+                cursor: pointer;
+                border-radius: 0;
+                border: 0;
+                font-size: 12px;
+                color: #aaa;
+                outline: none;
+                padding: 11px 8px;
+                text-align: center;
+                max-width: 60px;
+                background-color: transparent;
+                letter-spacing: 1px;
+                margin: 5px 4px;
+                border-radius: 3px;
+                
+                &:hover {
+                    background-color: #444
+                }
+                span {
+                    font-size: 21px;
+                    line-height: 3px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .chatBody.showin .chatList{
+        width: 60% !important;
+    } 
+}
+
+@media screen and (max-width: 700px) {
+    .chatBody.showin .chatList{
+        width: 100% !important;
+    }
+    .mediaInfo {
+        width: 100% !important;
+        max-width: initial !important;
+        box-sizing: border-box;
+        border-left: 0 !important;
+        right: -100%; 
+    }
+}

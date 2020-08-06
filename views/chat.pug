@@ -1,0 +1,80 @@
+doctype html
+html(lang="en")
+    head
+        if type == "season"
+            - var t = data.title+" ("+data.year+") - "+season.name
+        else if type == "episode"
+            - var t = data.title+" ("+data.year+") - "+episode.name
+        else
+            - var t = data.title+" ("+data.year+")"
+        title= t
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        meta(property="og:type" content="website")
+        meta(property="og:url" content="https://watchparty.live/"+type+"/"+id+key)
+        meta(property="og:title" content=t)
+        meta(property="og:description" content="Watch party for "+t)
+        if !data.poster
+            meta(property="og:image" content="https://watchparty.live/img/social_share.png")
+        else
+            meta(property="og:image" content="https://image.tmdb.org/t/p/w500" + data.poster)
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.3/pure-min.css")
+        link(rel='stylesheet' href='https://watchparty.live/css/style.css')
+    body.chat(data-room=type+"/"+id+key)
+        .overlay
+            .username
+                input(type="text" placeholder="Pick your name", maxlength="20")
+                button #{'>'} 
+                .errormsg 
+        main 
+            header
+                .infoBtn(title="Information")
+                .titleBox
+                    .title= data.title
+                    .titleInfo
+                        span.year= data.year
+                        if season 
+                            if season.season_number < 10 
+                                span.season= " · S0" + season.season_number
+                            else
+                                span.season= " · S" + season.season_number
+                            if episode 
+                                if episode.episode_number < 10 
+                                    span.episode= "E0" + episode.episode_number
+                                else
+                                    span.episode= "E" + episode.episode_number
+                        span.online
+                .videocallBtn(title="Start a video call")
+            .chatBody
+                .chatList
+                    .messageList
+                .mediaInfo
+                    if data.poster
+                        .poster
+                            img(src="https://image.tmdb.org/t/p/w500"+data.poster)
+                    else
+                        .poster.null
+                            img(src="https://watchparty.live/img/placeholder.svg")
+                    if type == "season"
+                        .name= season.name 
+                    else if type == "episode"
+                        .name= episode.name
+                    .releaseInfo
+                        .rating= data.rating
+                        .date= data.release_date
+                        .runtime= data.runtime
+                    .overview= data.overview
+                    a.tmdbLink(href=attrib,title="Powered by TMDB",target="_blank")
+                        | Powered by 
+                        img(src="https://watchparty.live/img/tmdb.svg")
+            .messageInput
+                .nickname
+                textarea(placeholder="Type a message...")
+                button(type="submit")
+                    | SEND (
+                    span ↵
+                    | )
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js')
+        script(src='https://watchparty.live/js/chat.js')

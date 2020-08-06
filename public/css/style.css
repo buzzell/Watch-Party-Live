@@ -1,0 +1,607 @@
+html, body {
+  height: 100%; }
+
+body.chat .overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  z-index: 1000; }
+  body.chat .overlay .username {
+    width: 90%;
+    max-width: 500px;
+    border-bottom: 1px solid #444;
+    display: flex;
+    position: relative; }
+    body.chat .overlay .username.error {
+      border-color: orangered; }
+      body.chat .overlay .username.error .errormsg {
+        display: block;
+        position: absolute;
+        left: 5px;
+        bottom: -22px;
+        font-size: 12px;
+        font-family: monospace;
+        color: orangered; }
+    body.chat .overlay .username input {
+      width: 100%;
+      font-size: 18px;
+      font-family: monospace;
+      padding: 10px 3px;
+      background-color: transparent;
+      border: 0;
+      color: #ccc;
+      outline: none;
+      box-sizing: border-box; }
+    body.chat .overlay .username button {
+      font-family: monospace;
+      font-size: 15px;
+      cursor: pointer;
+      border-radius: 0;
+      border: 0;
+      background-color: transparent;
+      font-size: 27px;
+      font-weight: bold;
+      color: #aaa;
+      outline: none;
+      padding: 0 13px;
+      width: 40px; }
+      body.chat .overlay .username button:hover {
+        background-color: #444; }
+    body.chat .overlay .username .errormsg {
+      display: none; }
+
+body.chat main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: #333;
+  position: relative; }
+  body.chat main header {
+    display: flex;
+    border-bottom: 1px solid #444;
+    align-items: center; }
+    body.chat main header .titleBox {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px 0; }
+      body.chat main header .titleBox .title {
+        font-family: monospace;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 0;
+        color: #ccc;
+        box-sizing: border-box; }
+      body.chat main header .titleBox .titleInfo {
+        font-size: 12px;
+        color: #aaa;
+        font-family: arial;
+        margin-top: 2px; }
+    body.chat main header .infoBtn, body.chat main header .videocallBtn {
+      background-image: url("https://watchparty.live/img/info.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 24px;
+      width: 32px;
+      height: 32px;
+      padding: 5px;
+      margin: 5px;
+      border-radius: 3px;
+      cursor: pointer; }
+      body.chat main header .infoBtn.close, body.chat main header .videocallBtn.close {
+        background-image: url("https://watchparty.live/img/close.svg"); }
+      body.chat main header .infoBtn:hover, body.chat main header .videocallBtn:hover {
+        background-color: #444; }
+    body.chat main header .videocallBtn {
+      background-image: url("https://watchparty.live/img/video.svg"); }
+  body.chat main .chatBody {
+    flex: 13;
+    position: relative;
+    overflow: hidden; }
+    body.chat main .chatBody .chatList {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      transition: width 150ms linear; }
+      body.chat main .chatBody .chatList .messageList {
+        width: 100%;
+        min-height: 100%;
+        padding: 10px 10px 5px 10px;
+        box-sizing: border-box;
+        max-width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column; }
+        body.chat main .chatBody .chatList .messageList .message {
+          border-radius: 3px;
+          max-width: 100%;
+          box-sizing: border-box;
+          align-self: flex-start;
+          margin: 5px 0; }
+          body.chat main .chatBody .chatList .messageList .message:first-child {
+            margin-top: auto; }
+          body.chat main .chatBody .chatList .messageList .message.me {
+            align-self: flex-end;
+            text-align: right; }
+            body.chat main .chatBody .chatList .messageList .message.me .name {
+              text-align: right; }
+          body.chat main .chatBody .chatList .messageList .message .name {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 17px;
+            color: #9999;
+            letter-spacing: .5px;
+            font-family: arial;
+            padding: 0px 3px 3px 3px; }
+            body.chat main .chatBody .chatList .messageList .message .name a.pure-button {
+              font-size: 85%;
+              background-image: url("https://watchparty.liveimg/video_dark.svg");
+              background-repeat: no-repeat;
+              background-position: 4px 3px;
+              background-size: 20%;
+              color: #000;
+              padding: 5px 7px 5px 28px; }
+          body.chat main .chatBody .chatList .messageList .message .messageContent {
+            color: #ccc;
+            font-family: arial;
+            letter-spacing: .8px;
+            padding: 5px 7px;
+            font-size: 16px;
+            overflow-wrap: anywhere;
+            background-color: #444;
+            border-radius: 6px;
+            display: inline-block;
+            max-width: 100%; }
+    body.chat main .chatBody .mediaInfo {
+      width: 40%;
+      height: 100%;
+      max-width: 420px;
+      border-left: 1px solid #444;
+      color: #ccc;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      position: absolute;
+      right: -100%;
+      top: 0;
+      background-color: #333;
+      transition: right 0.2 linear;
+      -moz-transition: right 150ms linear;
+      -webkit-transition: right 150ms linear; }
+      body.chat main .chatBody .mediaInfo .poster {
+        padding: 3% 6% 0 6%; }
+        body.chat main .chatBody .mediaInfo .poster img {
+          display: block;
+          width: 100%;
+          border-radius: 3px; }
+        body.chat main .chatBody .mediaInfo .poster.null img {
+          padding: 10px 35%;
+          box-sizing: border-box;
+          background-color: #dbdbdb; }
+      body.chat main .chatBody .mediaInfo .name {
+        font-size: 18px;
+        font-family: arial;
+        padding: 0 6%;
+        margin-top: 10px; }
+      body.chat main .chatBody .mediaInfo .releaseInfo {
+        display: flex;
+        font-size: 16px;
+        font-family: arial;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 6%;
+        margin: 15px 0; }
+        body.chat main .chatBody .mediaInfo .releaseInfo .rating {
+          border: 1px solid #ccc;
+          padding: 4px 5px;
+          font-size: 12px;
+          line-height: 12px;
+          border-radius: 4px; }
+        body.chat main .chatBody .mediaInfo .releaseInfo .date {
+          letter-spacing: 1px; }
+      body.chat main .chatBody .mediaInfo .overview {
+        font-family: arial;
+        font-size: 13px;
+        letter-spacing: 1px;
+        line-height: 20px;
+        padding: 0 6%;
+        text-align: justify; }
+      body.chat main .chatBody .mediaInfo .tmdbLink {
+        align-self: flex-end;
+        margin-top: auto;
+        padding: 10px 10px;
+        font-family: monospace;
+        font-size: 12px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #90cea1; }
+        body.chat main .chatBody .mediaInfo .tmdbLink img {
+          width: 75px; }
+    body.chat main .chatBody.showin .chatList {
+      width: calc(100% - 420px); }
+    body.chat main .chatBody.showin .mediaInfo {
+      right: 0; }
+  body.chat main .messageInput {
+    border-top: 1px solid #444;
+    height: 90px !important;
+    display: flex;
+    position: relative; }
+    body.chat main .messageInput .nickname {
+      position: absolute;
+      left: 0px;
+      top: -1px;
+      color: #888;
+      font-family: monospace;
+      padding: 4px 3px;
+      background-color: #444;
+      border-bottom-right-radius: 3px; }
+    body.chat main .messageInput textarea {
+      flex: 11;
+      background-color: transparent;
+      border: 0;
+      outline: none;
+      resize: none;
+      color: #ccc;
+      font-family: arial;
+      font-size: 16px;
+      letter-spacing: .3px;
+      line-height: 18px;
+      padding: 30px 5px 5px 5px; }
+    body.chat main .messageInput button {
+      font-family: monospace;
+      cursor: pointer;
+      border-radius: 0;
+      border: 0;
+      font-size: 12px;
+      color: #aaa;
+      outline: none;
+      padding: 11px 8px;
+      text-align: center;
+      max-width: 60px;
+      background-color: transparent;
+      letter-spacing: 1px;
+      margin: 5px 4px;
+      border-radius: 3px; }
+      body.chat main .messageInput button:hover {
+        background-color: #444; }
+      body.chat main .messageInput button span {
+        font-size: 21px;
+        line-height: 3px; }
+
+@media screen and (max-width: 1050px) {
+  .chatBody.showin .chatList {
+    width: 60% !important; } }
+
+@media screen and (max-width: 700px) {
+  .chatBody.showin .chatList {
+    width: 100% !important; }
+  .mediaInfo {
+    width: 100% !important;
+    max-width: initial !important;
+    box-sizing: border-box;
+    border-left: 0 !important;
+    right: -100%; } }
+
+body.search {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: #efefef; }
+  body.search.results .header {
+    min-height: initial;
+    height: 0%; }
+  body.search.results .searchBox .searchInput input {
+    max-width: 1020px; }
+  body.search .header {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: height 250ms linear; }
+    body.search .header img {
+      display: block;
+      width: auto;
+      height: 100%;
+      max-width: 160px; }
+  body.search .searchBox {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column; }
+    body.search .searchBox .searchInput {
+      position: fixed;
+      width: 100%;
+      background-color: #efefef;
+      z-index: 100; }
+      body.search .searchBox .searchInput input {
+        display: block;
+        width: 98%;
+        margin: 0 auto;
+        padding: 15px 5px;
+        font-size: 20px;
+        font-family: monospace;
+        border: 0;
+        border-bottom: 2px solid #ddd;
+        outline: none;
+        max-width: 360px;
+        box-sizing: border-box;
+        background-color: transparent;
+        transition: all 250ms linear; }
+    body.search .searchBox .mediaList {
+      flex: 1;
+      width: 97%;
+      margin: 0 auto;
+      max-width: 1010px;
+      padding-top: 55px; }
+      body.search .searchBox .mediaList.error {
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+        body.search .searchBox .mediaList.error .errormsg {
+          font-size: 16px;
+          font-weight: bold;
+          font-family: monospace;
+          color: #444; }
+      body.search .searchBox .mediaList .media {
+        background-color: #fff;
+        text-decoration: none;
+        display: flex;
+        border-radius: 3px;
+        overflow: hidden;
+        margin: 5px 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+        flex-wrap: wrap; }
+        body.search .searchBox .mediaList .media .poster {
+          min-width: 100px;
+          width: 100px;
+          background-color: #dbdbdb;
+          flex: 1; }
+          body.search .searchBox .mediaList .media .poster img {
+            display: block;
+            width: 100%; }
+          body.search .searchBox .mediaList .media .poster.null img {
+            padding: 48px 18px;
+            width: 55px;
+            margin: 0 auto; }
+        body.search .searchBox .mediaList .media .info {
+          flex: 7;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          position: relative;
+          padding: 0 24px 0 5px; }
+          body.search .searchBox .mediaList .media .info .title {
+            font-family: monospace;
+            font-size: 18px;
+            font-weight: bold;
+            max-height: 40px;
+            overflow: hidden;
+            margin-bottom: 2px;
+            color: #333; }
+          body.search .searchBox .mediaList .media .info .date {
+            font-family: monospace;
+            font-size: 12px;
+            color: #888; }
+          body.search .searchBox .mediaList .media .info .overview {
+            font-family: arial;
+            font-size: 12px;
+            margin-top: 6px;
+            color: #333;
+            overflow: hidden;
+            position: relative;
+            line-height: 1.2em;
+            max-height: 2.4em;
+            text-align: justify;
+            margin-right: -1em;
+            padding-right: 1em; }
+            body.search .searchBox .mediaList .media .info .overview:before {
+              content: '...';
+              position: absolute;
+              right: 1px;
+              bottom: 0px; }
+            body.search .searchBox .mediaList .media .info .overview:after {
+              content: '';
+              position: absolute;
+              right: 0;
+              width: 1em;
+              height: 1em;
+              margin-top: 0.2em;
+              background: white; }
+        body.search .searchBox .mediaList .media .mediaBtnGrp {
+          width: 100%; }
+          body.search .searchBox .mediaList .media .mediaBtnGrp.tv a {
+            width: 33.333%; }
+          body.search .searchBox .mediaList .media .mediaBtnGrp.movie a {
+            width: 50%; }
+        body.search .searchBox .mediaList .media .button-small {
+          font-size: 75%; }
+        body.search .searchBox .mediaList .media .button-success, body.search .searchBox .mediaList .media .button-secondary {
+          color: white;
+          text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); }
+        body.search .searchBox .mediaList .media .button-success {
+          background: #1cb841; }
+        body.search .searchBox .mediaList .media .button-secondary {
+          background: #42b8dd; }
+
+body.episodes {
+  background-color: #efefef; }
+  body.episodes .titleBox h1 {
+    width: 98%;
+    margin: 0 auto;
+    padding: 15px 5px;
+    font-weight: normal;
+    font-size: 20px;
+    font-family: monospace;
+    border: 0;
+    border-bottom: 2px solid #ddd;
+    max-width: 1020px;
+    box-sizing: border-box; }
+  body.episodes .seasonList {
+    width: 97%;
+    margin: 0 auto;
+    max-width: 1010px; }
+    body.episodes .seasonList .season {
+      background-color: #fff;
+      text-decoration: none;
+      display: flex;
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 5px 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ddd;
+      flex-wrap: wrap; }
+      body.episodes .seasonList .season .poster {
+        min-width: 100px;
+        width: 100px;
+        background-color: #dbdbdb;
+        flex: 1; }
+        body.episodes .seasonList .season .poster img {
+          display: block;
+          width: 100%; }
+        body.episodes .seasonList .season .poster.null img {
+          padding: 48px 18px;
+          width: 55px;
+          margin: 0 auto; }
+      body.episodes .seasonList .season .info {
+        flex: 7;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        padding: 0 15px 0 5px; }
+        body.episodes .seasonList .season .info .title {
+          font-family: monospace;
+          font-size: 18px;
+          font-weight: bold;
+          max-height: 40px;
+          overflow: hidden;
+          margin-bottom: 2px;
+          color: #333; }
+        body.episodes .seasonList .season .info .date {
+          font-family: monospace;
+          font-size: 12px;
+          color: #888; }
+        body.episodes .seasonList .season .info .overview {
+          font-family: arial;
+          font-size: 12px;
+          margin-top: 6px;
+          color: #333;
+          overflow: hidden;
+          position: relative;
+          line-height: 1.2em;
+          max-height: 2.4em;
+          text-align: justify;
+          margin-right: -1em;
+          padding-right: 1em; }
+          body.episodes .seasonList .season .info .overview:before {
+            content: '...';
+            position: absolute;
+            right: 1px;
+            bottom: 0px; }
+          body.episodes .seasonList .season .info .overview:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            width: 1em;
+            height: 1em;
+            margin-top: 0.2em;
+            background: white; }
+      body.episodes .seasonList .season .seasonBtnGrp {
+        width: 100%; }
+        body.episodes .seasonList .season .seasonBtnGrp a {
+          width: 33.333%;
+          border-radius: 0;
+          font-size: 80%;
+          padding: .5em; }
+      body.episodes .seasonList .season ul.episodeList {
+        width: 100%;
+        list-style: none;
+        margin: 0;
+        padding: 0 10px;
+        display: none; }
+        body.episodes .seasonList .season ul.episodeList li.episode {
+          display: flex;
+          align-items: center;
+          padding: 10px 0;
+          justify-content: center;
+          border-bottom: 1px solid #ccc;
+          flex-wrap: wrap; }
+          body.episodes .seasonList .season ul.episodeList li.episode:last-child {
+            border-color: transparent; }
+          body.episodes .seasonList .season ul.episodeList li.episode .epiNum {
+            padding: 18px 15px;
+            width: 58px;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: monospace;
+            box-sizing: border-box;
+            text-align: center; }
+          body.episodes .seasonList .season ul.episodeList li.episode .epiStill {
+            width: 75px;
+            background-color: #dbdbdb;
+            border-radius: 3px;
+            overflow: hidden; }
+            body.episodes .seasonList .season ul.episodeList li.episode .epiStill img {
+              display: block;
+              width: 100%; }
+            body.episodes .seasonList .season ul.episodeList li.episode .epiStill.null img {
+              width: 32px;
+              padding: 12px 0;
+              margin: 0 auto; }
+          body.episodes .seasonList .season ul.episodeList li.episode .epiName {
+            flex: 1;
+            font-size: 16px;
+            padding: 19px 10px;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            min-width: 190px; }
+          body.episodes .seasonList .season ul.episodeList li.episode .episodeBtnGrp {
+            width: 231px;
+            margin: 5px 0; }
+            body.episodes .seasonList .season ul.episodeList li.episode .episodeBtnGrp a {
+              font-size: 75%; }
+  body.episodes .button-success, body.episodes .button-secondary {
+    color: white;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); }
+  body.episodes .button-success {
+    background: #1cb841; }
+  body.episodes .button-secondary {
+    background: #42b8dd; }
+
+@media only screen and (max-width: 375px) {
+  .seasonBtnGrp a {
+    width: 100% !important;
+    border-right: 0 !important; } }
+
+body.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #efefef;
+  color: #333;
+  font-size: 16px;
+  font-family: monospace; }
+  body.error a {
+    text-decoration: none;
+    margin-top: 35px; }
+    body.error a img {
+      display: block;
+      width: 150px; }
