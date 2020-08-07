@@ -2,7 +2,7 @@ module.exports = (express) => {
     const router = express.Router();
     const request = require('request');
     const { v4: uuidv4 } = require('uuid');
-    const key = "d2efe717afb56d41d46f5de0d8831a8e"
+    const key = process.env.TMDB_KEY
 
     router.get("/", (req, res) => {
         res.render("search");
