@@ -13,7 +13,7 @@ html(lang="en")
         else
             meta(property="og:image" content="https://image.tmdb.org/t/p/w500" + data.poster_path)
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.3/pure-min.css")
-        link(rel='stylesheet' href='https://watchparty.live/css/style.css')
+        link(rel="stylesheet" href="/css/style.css")
     body.episodes(data-id=data.id, data-num_of_seasons=data.number_of_seasons)
         .titleBox
             h1= data.name
@@ -37,4 +37,4 @@ html(lang="en")
                     ul.episodeList
         script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js')
         script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js')
-        script(src='https://watchparty.live/js/episodes.js')
+        script(src='/js/episodes.js')

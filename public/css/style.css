@@ -148,7 +148,7 @@ body.chat main {
             padding: 0px 3px 3px 3px; }
             body.chat main .chatBody .chatList .messageList .message .name a.pure-button {
               font-size: 85%;
-              background-image: url("https://watchparty.liveimg/video_dark.svg");
+              background-image: url("https://watchparty.live/img/video_dark.svg");
               background-repeat: no-repeat;
               background-position: 4px 3px;
               background-size: 20%;
@@ -277,9 +277,6 @@ body.chat main {
       border-radius: 3px; }
       body.chat main .messageInput button:hover {
         background-color: #444; }
-      body.chat main .messageInput button span {
-        font-size: 21px;
-        line-height: 3px; }
 
 @media screen and (max-width: 1050px) {
   .chatBody.showin .chatList {

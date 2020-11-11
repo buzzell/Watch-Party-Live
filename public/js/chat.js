@@ -73,6 +73,10 @@ const chatApp = {
         limitInput: function(e){
             $(".username").removeClass("error")
             var key = e.which || e.keyCode;
+            if(key == 13){
+                chatApp.nickname.checkNickname()
+                return false;
+            }
             if(e.shiftKey && key >= 48 && key <= 57) {
                 return false;
             } else {

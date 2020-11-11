@@ -19,7 +19,7 @@ html(lang="en")
         else
             meta(property="og:image" content="https://image.tmdb.org/t/p/w500" + data.poster)
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.3/pure-min.css")
-        link(rel='stylesheet' href='https://watchparty.live/css/style.css')
+        link(rel="stylesheet" href="/css/style.css")
     body.chat(data-room=type+"/"+id+key)
         .overlay
             .username
@@ -77,4 +77,4 @@ html(lang="en")
         script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js')
         script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js')
         script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js')
-        script(src='https://watchparty.live/js/chat.js')
+        script(src='/js/chat.js')
